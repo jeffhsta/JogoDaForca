@@ -1,7 +1,5 @@
 When /^start a new game$/ do
-	steps %{
-		* I run `forca` interactively
-	}
+	run_interactive "forca"
 end
 
 Then /^look on screen:$/ do |message|
