@@ -1,6 +1,7 @@
 When /^start a new game$/ do
-	game = Game.new
-	game.start
+	steps %{
+		* I run `forca` interactively
+	}
 end
 
 Then /^look on screen:$/ do |string|
