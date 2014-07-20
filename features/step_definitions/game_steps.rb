@@ -3,7 +3,5 @@ When /^start a new game$/ do
 end
 
 Then /^look on screen:$/ do |message|
-	steps %{
-		* the stdout should contain "#{message}"
-	}
+	assert_partial_output message, all_stdout
 end
