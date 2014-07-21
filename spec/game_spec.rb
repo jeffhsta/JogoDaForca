@@ -22,4 +22,16 @@ describe Game do
 			expect(game).not_to be_ended
 		end
 	end
+
+	describe "#next_step" do
+		context "when the game just started" do
+			it "asks the playes for the length of the word to be raffled" do
+				question = "How the length of word for be raffled?"
+
+				expect(output).to receive(:puts).with(question)
+
+				game.next_step
+			end
+		end
+	end
 end

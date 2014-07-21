@@ -11,4 +11,8 @@ class Game
 	def ended?
 		@ended
 	end
+
+	def next_step
+		@output.puts "How the length of word for be raffled?"
+	end
 end
