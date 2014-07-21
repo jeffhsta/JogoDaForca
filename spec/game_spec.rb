@@ -13,5 +13,16 @@ describe Game do
 
 			game.start
 		end
+
+		it "read the number of letter for to raffle a word" do
+		end
+	end
+
+	describe "#ended?" do
+		it "return false when game just started" do
+			game = Game.new
+
+			expect(game).not_to be_ended
+		end
 	end
 end
