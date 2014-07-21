@@ -2,8 +2,9 @@ require "spec_helper"
 require "game"
 
 describe Game do
-	subject(:output) { double "output" }
-	subject(:game) { Game.new output }
+	let(:output) { double "output" }
+	let(:input) { double "input" }
+	subject(:game) { Game.new output, input }
 
 	describe "#start" do
 		it "print the initial message" do
@@ -29,6 +30,7 @@ describe Game do
 				question = "How the length of word for be raffled?"
 
 				expect(output).to receive(:puts).with(question)
+				expect(input).to receive(:gets)
 
 				game.next_step
 			end
