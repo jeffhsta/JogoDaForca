@@ -3,12 +3,11 @@ require "game"
 
 describe Game do
 	subject(:output) { double "output" }
+	subject(:game) { Game.new output }
 
 	describe "#start" do
 		it "print the initial message" do
 			initial_message = "Welcome to Forca game!"
-			game = Game.new output
-
 			expect(output).to receive(:puts).with(initial_message)
 
 			game.start
@@ -20,8 +19,6 @@ describe Game do
 
 	describe "#ended?" do
 		it "return false when game just started" do
-			game = Game.new
-
 			expect(game).not_to be_ended
 		end
 	end
