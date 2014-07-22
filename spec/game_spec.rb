@@ -2,7 +2,7 @@ require "spec_helper"
 require "game"
 
 describe Game do
-	let(:output) { double "output" }
+	let(:output) { double("output").as_null_object }
 	let(:input) { double "input" }
 	subject(:game) { Game.new output, input }
 
@@ -34,6 +34,15 @@ describe Game do
 
 				game.next_step
 			end
+		end
+
+		it "finish the game when the player asks to" do
+			player_input = "finish"
+			allow(input).to receive(:gets).and_return("finish")
+
+			game.next_step
+
+			expect(game).to be_ended
 		end
 	end
 end

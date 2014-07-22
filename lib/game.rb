@@ -15,6 +15,10 @@ class Game
 
 	def next_step
 		@output.puts "How the length of word for be raffled?"
-		@input.gets
+		input_text = @input.gets
+
+		if input_text == "finish"
+			@ended = true
+		end
 	end
 end
