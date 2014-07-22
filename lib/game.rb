@@ -1,3 +1,5 @@
+require_relative "my_ci"
+
 class Game
 	def initialize(ci = MyCI.new)
 		@ci = ci
@@ -14,13 +16,14 @@ class Game
 
 	def next_step
 		@ci.write "How the length of word for be raffled?"
-		input_text = @ci.read
+		# input_text = @ci.read.strip # WORKING
+		@ended = true
 
-		if input_text == "finish"
-			@ended = true
-		else
-			@ci.write underscore_for_word_length(input_text)
-		end
+		# if input_text == "finish" # WORKING
+		# 	@ended = true
+		# else
+		# 	@ci.write underscore_for_word_length(input_text)
+		# end
 	end
 
 	private
