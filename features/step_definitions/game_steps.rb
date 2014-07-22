@@ -11,5 +11,9 @@ Given /^I started the game$/ do
 end
 
 When /^I choose the raffle word to have "(.*?)" letters$/ do |word_size|
-	# type word_size # WORKING
+	type word_size
+end
+
+When /^finish the game$/ do
+	finish_game
 end

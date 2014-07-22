@@ -29,12 +29,11 @@ describe Game do
 				question = "How the length of word for be raffled?"
 
 				expect(ci).to receive(:write).with(question)
-				# expect(ci).to receive(:read)
 
 				game.next_step
 			end
 
-			xit "should print '____' for a word with length is 4" do
+			it "should print '____' for a word with length is 4" do
 				allow(ci).to receive(:read).and_return("4")
 
 				expect(ci).to receive(:write).with("____")
@@ -43,7 +42,7 @@ describe Game do
 			end
 		end
 
-		xit "finish the game when the player asks to" do
+		it "finish the game when the player asks to" do
 			player_input = "finish"
 			allow(ci).to receive(:read).and_return("finish")
 
