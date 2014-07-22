@@ -2,14 +2,13 @@ require "spec_helper"
 require "game"
 
 describe Game do
-	let(:output) { double("output").as_null_object }
-	let(:input) { double "input" }
-	subject(:game) { Game.new output, input }
+	let(:ci) { double("ci").as_null_object }
+	subject(:game) { Game.new ci }
 
 	describe "#start" do
 		it "print the initial message" do
 			initial_message = "Welcome to Forca game!"
-			expect(output).to receive(:puts).with(initial_message)
+			expect(ci).to receive(:write).with(initial_message)
 
 			game.start
 		end
@@ -29,8 +28,16 @@ describe Game do
 			it "asks the playes for the length of the word to be raffled" do
 				question = "How the length of word for be raffled?"
 
-				expect(output).to receive(:puts).with(question)
-				expect(input).to receive(:gets)
+				expect(ci).to receive(:write).with(question)
+				expect(ci).to receive(:read)
+
+				game.next_step
+			end
+
+			it "should print '____' for a word with length is 4" do
+				allow(ci).to receive(:read).and_return("4")
+
+				expect(ci).to receive(:write).with("____")
 
 				game.next_step
 			end
@@ -38,7 +45,7 @@ describe Game do
 
 		it "finish the game when the player asks to" do
 			player_input = "finish"
-			allow(input).to receive(:gets).and_return("finish")
+			allow(ci).to receive(:read).and_return("finish")
 
 			game.next_step
 

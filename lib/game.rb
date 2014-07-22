@@ -1,12 +1,11 @@
 class Game
-	def initialize(output = STDOUT, input = STDIN)
-		@output = output
-		@input = input
+	def initialize(ci = MyCI.new)
+		@ci = ci
 		@ended = false
 	end
 
 	def start
-		@output.puts "Welcome to Forca game!"
+		@ci.write "Welcome to Forca game!"
 	end
 
 	def ended?
@@ -14,11 +13,19 @@ class Game
 	end
 
 	def next_step
-		@output.puts "How the length of word for be raffled?"
-		input_text = @input.gets
+		@ci.write "How the length of word for be raffled?"
+		input_text = @ci.read
 
 		if input_text == "finish"
 			@ended = true
+		else
+			@ci.write underscore_for_word_length(input_text)
 		end
+	end
+
+	private
+
+	def underscore_for_word_length(input_text)
+		"_" * input_text.to_i
 	end
 end
