@@ -66,5 +66,16 @@ describe Game do
 
 			expect(game).to be_ended
 		end
+
+		it "should return a message when the player pass the not avalible word length" do
+			word_length = "20"
+			message = "We don't have the word with this wish lenght, is necessary choose another length."
+			allow(ci).to receive(:read).and_return(word_length)
+			game.start
+
+			expect(ci).to receive(:write).with(message)
+
+			game.next_step
+		end
 	end
 end

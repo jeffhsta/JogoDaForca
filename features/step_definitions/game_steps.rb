@@ -17,3 +17,7 @@ end
 When /^finish the game$/ do
 	finish_game
 end
+
+Then /^the game finish with the message on the screen:$/ do |message|
+	assert_partial_output message, all_stdout
+end

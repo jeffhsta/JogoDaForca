@@ -21,7 +21,21 @@ Feature: start the game
 
 		Given I started the game
 		When I choose the raffle word to have "4" letters
+		And finish the game
 		Then I look on screen:
 		"""
 		____
+		"""
+
+	Scenario: raffle the word without success
+		If the player choose the word length not valiable, the player will be alerted
+		about that and he/she need choose another word length
+
+		Given I started the game
+		When I choose the raffle word to have "20" letters
+		And finish the game
+		Then the game finish with the message on the screen:
+		"""
+		We don't have the word with this wish lenght, is necessary choose another length.
+		How the length of word for be raffled?
 		"""

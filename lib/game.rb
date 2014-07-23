@@ -20,7 +20,6 @@ class Game
 	def next_step
 		@ci.write "How the length of word for be raffled?"
 		input_text = @ci.read.strip
-		@ended = true
 
 		run_the_next_step input_text
 	end
@@ -32,8 +31,12 @@ class Game
 			@ended = true
 		else
 			word_length = input_text.to_i
-			raffle_word! word_length
-			@ci.write underscore_for_word_length(word_length) 
+			begin
+				raffle_word! word_length
+				@ci.write underscore_for_word_length(word_length) 
+			rescue StandardError => error
+				@ci.write error.message
+			end
 		end
 	end
 
@@ -45,6 +48,10 @@ class Game
 		words = %w(hi mom game fruit)
 		@raffle_word = words.detect do |word|
 			word.length == word_length
+		end
+
+		if @raffle_word == nil
+			raise StandardError, "We don't have the word with this wish lenght, is necessary choose another length."
 		end
 	end
 end
