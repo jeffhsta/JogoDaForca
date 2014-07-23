@@ -46,6 +46,17 @@ describe Game do
 			end
 		end
 
+		context "when player ask to raffle word" do
+			it "should return a word with the length passed" do
+				word_lenght = "3"
+				allow(ci).to receive(:read).and_return(word_lenght)
+
+				game.next_step
+
+				expect(game.raffle_word.length).to eq(word_lenght.to_i)
+			end
+		end
+
 		it "finish the game when the player asks to" do
 			player_input = "finish"
 			allow(ci).to receive(:read).and_return("finish")

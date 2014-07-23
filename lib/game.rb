@@ -1,9 +1,12 @@
 require_relative "my_ci"
 
 class Game
+	attr_reader :raffle_word
+
 	def initialize(ci = MyCI.new)
 		@ci = ci
 		@ended = false
+		@raffle_word = nil
 	end
 
 	def start
@@ -22,7 +25,11 @@ class Game
 		if input_text == "finish"
 			@ended = true
 		else
-			@ci.write underscore_for_word_length(input_text)
+			words = %w(hi mom game fruit)
+			@raffle_word = words.detect do |word|
+				word.length == input_text.to_i
+			end
+			@ci.write underscore_for_word_length(input_text) 
 		end
 	end
 
