@@ -14,6 +14,10 @@ describe Game do
 		end
 
 		it "read the number of letter for to raffle a word" do
+			expect(ci).to receive(:read)
+
+			game.start
+			game.next_step
 		end
 	end
 
