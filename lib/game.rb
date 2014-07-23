@@ -25,10 +25,7 @@ class Game
 		if input_text == "finish"
 			@ended = true
 		else
-			words = %w(hi mom game fruit)
-			@raffle_word = words.detect do |word|
-				word.length == input_text.to_i
-			end
+			raffle_word! input_text.to_i
 			@ci.write underscore_for_word_length(input_text) 
 		end
 	end
@@ -37,5 +34,12 @@ class Game
 
 	def underscore_for_word_length(input_text)
 		"_" * input_text.to_i
+	end
+
+	def raffle_word!(word_length)
+		words = %w(hi mom game fruit)
+		@raffle_word = words.detect do |word|
+			word.length == word_length
+		end
 	end
 end

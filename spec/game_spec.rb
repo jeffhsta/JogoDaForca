@@ -52,8 +52,9 @@ describe Game do
 				allow(ci).to receive(:read).and_return(word_lenght)
 
 				game.next_step
+				returned_word_length = game.raffle_word.length
 
-				expect(game.raffle_word.length).to eq(word_lenght.to_i)
+				expect(returned_word_length).to eq(word_lenght.to_i)
 			end
 		end
 
