@@ -22,6 +22,12 @@ class Game
 		input_text = @ci.read.strip
 		@ended = true
 
+		run_the_next_step input_text
+	end
+
+	private
+
+	def run_the_next_step(input_text)
 		if input_text == "finish"
 			@ended = true
 		else
@@ -30,8 +36,6 @@ class Game
 			@ci.write underscore_for_word_length(word_length) 
 		end
 	end
-
-	private
 
 	def underscore_for_word_length(input_text)
 		"_" * input_text
