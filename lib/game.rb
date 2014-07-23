@@ -25,15 +25,16 @@ class Game
 		if input_text == "finish"
 			@ended = true
 		else
-			raffle_word! input_text.to_i
-			@ci.write underscore_for_word_length(input_text) 
+			word_length = input_text.to_i
+			raffle_word! word_length
+			@ci.write underscore_for_word_length(word_length) 
 		end
 	end
 
 	private
 
 	def underscore_for_word_length(input_text)
-		"_" * input_text.to_i
+		"_" * input_text
 	end
 
 	def raffle_word!(word_length)
