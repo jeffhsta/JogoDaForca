@@ -20,9 +20,11 @@ class Game
 	end
 
 	def next_step
-		@ci.write "How the length of word for be raffled?"
-		input_text = @ci.read.strip
+		if @raffle_word == nil
+			@ci.write "How the length of word for be raffled?"
+		end
 
+		input_text = @ci.read.strip
 		run_the_next_step input_text
 	end
 
