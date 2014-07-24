@@ -47,14 +47,14 @@ class Game
 		word_in_progress = ""
 
 		@raffle_word.split("").each do |letter|
-			if @words_right.include? letter
-				word_in_progress << letter
-			else
-				word_in_progress << "_"
-			end
+			word_in_progress << get_letter_for_word_in_progress(letter)
 		end
 
 		@ci.write word_in_progress
+	end
+
+	def get_letter_for_word_in_progress(letter)
+		@words_right.include?(letter) ? letter : "_"
 	end
 
 	def guess_a_letter(input_text)
