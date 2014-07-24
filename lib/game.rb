@@ -7,8 +7,10 @@ class Game
 	def initialize(ci = MyCI.new, word_raffle = WordRaffle.new)
 		@ci = ci
 		@word_raffle = word_raffle
+
 		@ended = false
 		@raffle_word = nil
+		@words_right = []
 	end
 
 	def start
@@ -33,8 +35,33 @@ class Game
 	def run_the_next_step(input_text)
 		if input_text == "finish"
 			@ended = true
+		elsif input_text.length == 1 and @raffle_word != nil
+			guess_a_letter input_text
+			print_underscore
 		else
 			raffle_word_print_underscore input_text
+		end
+	end
+
+	def print_underscore
+		word_in_progress = ""
+
+		@raffle_word.split("").each do |letter|
+			if @words_right.include? letter
+				word_in_progress << letter
+			else
+				word_in_progress << "_"
+			end
+		end
+
+		@ci.write word_in_progress
+	end
+
+	def guess_a_letter(input_text)
+		if @raffle_word.include? input_text
+			if !@words_right.include? input_text
+				@words_right << input_text
+			end
 		end
 	end
 
@@ -42,7 +69,7 @@ class Game
 		word_length = input_text.to_i
 		begin
 			@raffle_word = @word_raffle.raffle_word word_length
-			@ci.write underscore_for_word_length(word_length) 
+			@ci.write underscore_for_word_length(word_length)
 		rescue StandardError => error
 			@ci.write error.message
 		end

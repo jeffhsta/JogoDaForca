@@ -61,24 +61,26 @@ describe Game do
 		end
 
 		context "when player guess a letter" do
-			before { game.start }
-
-			xit "should replace underscore when the letter is avalible on the raffled word" do
+			before do
+				game.start
 				allow(ci).to receive(:read).and_return("3")
-				game.next_step
 				allow(word_raffle).to receive(:raffle_word).and_return("MOM")
+				game.next_step
+			end
+
+			it "should replace underscore when the letter is avalible on the raffled word" do
 				allow(ci).to receive(:read).and_return("M")
 
-				game.next_step
-
 				expect(ci).to receive(:write).with("M_M")
+
+				game.next_step
 			end
 		end
 
 		it "should not ask player for pass word length again" do
 			game.start
 			allow(ci).to receive(:read).and_return("3")
-			
+
 			expect(ci).to receive(:write).with("How the length of word for be raffled?")
 			game.next_step
 
