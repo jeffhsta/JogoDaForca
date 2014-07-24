@@ -3,7 +3,8 @@ require "game"
 
 describe Game do
 	let(:ci) { double("ci").as_null_object }
-	subject(:game) { Game.new ci }
+	let(:word_raffle) { double("word_raffle").as_null_object }
+	subject(:game) { Game.new ci, word_raffle }
 
 	describe "#start" do
 		it "print the initial message" do
@@ -48,13 +49,14 @@ describe Game do
 
 		context "when player ask to raffle word" do
 			it "should return a word with the length passed" do
-				word_lenght = "3"
-				allow(ci).to receive(:read).and_return(word_lenght)
+				word_length = "3"
+				allow(ci).to receive(:read).and_return(word_length)
+				allow(word_raffle).to receive(:raffle_word).with(word_length.to_i).and_return("mom")
 
 				game.next_step
 				returned_word_length = game.raffle_word.length
 
-				expect(returned_word_length).to eq(word_lenght.to_i)
+				expect(returned_word_length).to eq(word_length.to_i)
 			end
 		end
 
@@ -71,6 +73,7 @@ describe Game do
 			word_length = "20"
 			message = "We don't have the word with this wish lenght, is necessary choose another length."
 			allow(ci).to receive(:read).and_return(word_length)
+			allow(word_raffle).to receive(:raffle_word).and_raise(StandardError, "We don't have the word with this wish lenght, is necessary choose another length.")
 			game.start
 
 			expect(ci).to receive(:write).with(message)

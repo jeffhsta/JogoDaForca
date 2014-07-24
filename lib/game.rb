@@ -1,10 +1,12 @@
 require_relative "my_ci"
+require_relative "word_raffle"
 
 class Game
 	attr_reader :raffle_word
 
-	def initialize(ci = MyCI.new)
+	def initialize(ci = MyCI.new, word_raffle = WordRaffle.new)
 		@ci = ci
+		@word_raffle = word_raffle
 		@ended = false
 		@raffle_word = nil
 	end
@@ -32,7 +34,8 @@ class Game
 		else
 			word_length = input_text.to_i
 			begin
-				raffle_word! word_length
+				# raffle_word! word_length
+				@raffle_word = @word_raffle.raffle_word word_length
 				@ci.write underscore_for_word_length(word_length) 
 			rescue StandardError => error
 				@ci.write error.message
@@ -42,16 +45,5 @@ class Game
 
 	def underscore_for_word_length(input_text)
 		"_" * input_text
-	end
-
-	def raffle_word!(word_length)
-		words = %w(hi mom game fruit)
-		@raffle_word = words.detect do |word|
-			word.length == word_length
-		end
-
-		if @raffle_word == nil
-			raise StandardError, "We don't have the word with this wish lenght, is necessary choose another length."
-		end
 	end
 end
