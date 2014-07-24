@@ -75,6 +75,14 @@ describe Game do
 
 				game.next_step
 			end
+
+			it "should replace underscore when the letter is avalible on the raffled word ignoring letter case" do
+				allow(ci).to receive(:read).and_return("m")
+
+				expect(ci).to receive(:write).with("M_M")
+
+				game.next_step
+			end
 		end
 
 		it "should not ask player for pass word length again" do

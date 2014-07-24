@@ -36,7 +36,7 @@ class Game
 		if input_text == "finish"
 			@ended = true
 		elsif input_text.length == 1 and @raffle_word != nil
-			guess_a_letter input_text
+			guess_a_letter input_text.upcase
 			print_underscore
 		else
 			raffle_word_print_underscore input_text
