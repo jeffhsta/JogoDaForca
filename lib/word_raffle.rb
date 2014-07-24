@@ -5,9 +5,7 @@ class WordRaffle
 			word.length == word_length
 		end
 
-		puts "raffle_word: #{raffled_word}"
 		validate_raffle_word raffled_word
-		puts "Problemas"
 	end
 
 	private
