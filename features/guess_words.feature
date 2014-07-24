@@ -6,7 +6,7 @@ Feature: game started
 	I want guess a letter
 
 	# IN DEVELOPMENT
-	# Scenario: I guess the letter with successifuly
+	# Scenario: I guess the letter successifully
 	# 	I can see this letter in right position replacing underscore
 
 	# 	Given the game is started

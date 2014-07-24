@@ -23,13 +23,13 @@ Then /^the game finish with the message on the screen:$/ do |message|
 end
 
 Given /^the game is started$/ do
-	# TODO
+	start_a_new_game
 end
 
 Given /^the word length is "(.*?)"$/ do |word_length|
-	# TODO
+	type word_size
 end
 
 When /^I guess letter "(.*?)"$/ do |letter|
-	# TODO
+	type letter
 end
