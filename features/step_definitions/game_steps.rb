@@ -21,3 +21,15 @@ end
 Then /^the game finish with the message on the screen:$/ do |message|
 	assert_partial_output message, all_stdout
 end
+
+Given /^the game is started$/ do
+	# TODO
+end
+
+Given /^the word length is "(.*?)"$/ do |word_length|
+	# TODO
+end
+
+When /^I guess letter "(.*?)"$/ do |letter|
+	# TODO
+end
