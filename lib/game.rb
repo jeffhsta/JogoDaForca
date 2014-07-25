@@ -1,12 +1,14 @@
 require_relative "my_ci"
 require_relative "word_raffle"
+require_relative "word_in_progress"
 
 class Game
 	attr_reader :raffle_word
 
-	def initialize(ci = MyCI.new, word_raffle = WordRaffle.new)
+	def initialize(ci = MyCI.new, word_raffle = WordRaffle.new, word_in_progress = WordInProgress.new)
 		@ci = ci
 		@word_raffle = word_raffle
+		@word_in_progress = word_in_progress
 
 		@ended = false
 		@raffle_word = nil
@@ -44,19 +46,9 @@ class Game
 	end
 
 	def print_underscore
-		word_in_progress = ""
-
-		@raffle_word.split("").each do |letter|
-			word_in_progress << get_letter_for_word_in_progress(letter)
-		end
-
-		@ci.write word_in_progress
+		@ci.write @word_in_progress.generate_word(@raffle_word, @words_right)
 	end
-
-	def get_letter_for_word_in_progress(letter)
-		@words_right.include?(letter) ? letter : "_"
-	end
-
+	
 	def guess_a_letter(input_text)
 		if @raffle_word.include? input_text
 			if !@words_right.include? input_text

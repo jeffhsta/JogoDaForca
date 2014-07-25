@@ -4,7 +4,9 @@ require "game"
 describe Game do
 	let(:ci) { double("ci").as_null_object }
 	let(:word_raffle) { double("word_raffle").as_null_object }
-	subject(:game) { Game.new ci, word_raffle }
+	let(:word_in_progress) { double("word_in_progress").as_null_object }
+
+	subject(:game) { Game.new ci, word_raffle, word_in_progress }
 
 	describe "#start" do
 		it "print the initial message" do
@@ -69,15 +71,19 @@ describe Game do
 			end
 
 			it "should replace underscore when the letter is avalible on the raffled word" do
+				word = "M_M"
 				allow(ci).to receive(:read).and_return("M")
+				allow(word_in_progress).to receive(:generate_word).and_return(word)
 
-				expect(ci).to receive(:write).with("M_M")
+				expect(ci).to receive(:write).with(word)
 
 				game.next_step
 			end
 
 			it "should replace underscore when the letter is avalible on the raffled word ignoring letter case" do
+				word = "M_M"
 				allow(ci).to receive(:read).and_return("m")
+				allow(word_in_progress).to receive(:generate_word).and_return(word)
 
 				expect(ci).to receive(:write).with("M_M")
 
