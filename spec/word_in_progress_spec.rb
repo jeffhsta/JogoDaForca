@@ -32,4 +32,18 @@ describe WordInProgress do
       expect(word).to eq("_____")
     end
   end
+
+  describe "#draw_doll" do
+    it "should draw just the doll's head with 1 guess wrong" do
+      guess_wrong = 1
+      given_draw =
+              "----+\n" +
+              "    |\n" +
+              "    O\n"
+
+      draw = word_in_progress.draw_doll guess_wrong
+
+      expect(draw).to eq(given_draw)
+    end
+  end
 end

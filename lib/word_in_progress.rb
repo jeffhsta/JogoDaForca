@@ -9,6 +9,12 @@ class WordInProgress
     word
   end
 
+  def draw_doll(guess_wrong)
+    "----+\n" +
+    "    |\n" + 
+    "    O\n"
+  end
+
   private
 
   def get_letter_for_word_in_progress(words_right, letter)
