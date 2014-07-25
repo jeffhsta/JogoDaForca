@@ -10,9 +10,17 @@ class WordInProgress
   end
 
   def draw_doll(guess_wrong)
-    "----+\n" +
-    "    |\n" + 
-    "    O\n"
+    doll_head =
+                "----+\n" +
+                "    |\n" +
+                "    O\n"
+
+    if guess_wrong == 1
+      doll_head
+    elsif guess_wrong == 2
+      doll_head +
+      "   /|"
+    end
   end
 
   private
