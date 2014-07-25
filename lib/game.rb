@@ -40,7 +40,7 @@ class Game
 		elsif is_case_for_guess_word? input_text
 			guess_a_letter input_text.upcase
 		else
-			raffle_word_print_underscore input_text
+			raffle_word_with_word_length input_text
 		end
 
 		print_underscore if @raffle_word != nil
@@ -66,7 +66,7 @@ class Game
 		end
 	end
 
-	def raffle_word_print_underscore(input_text)
+	def raffle_word_with_word_length(input_text)
 		word_length = input_text.to_i
 		begin
 			@raffle_word = @word_raffle.raffle_word word_length
