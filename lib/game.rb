@@ -13,6 +13,7 @@ class Game
 		@ended = false
 		@raffle_word = nil
 		@words_right = []
+		@guess_wrong = 0
 	end
 
 	def start
@@ -44,6 +45,11 @@ class Game
 		end
 
 		print_underscore if @raffle_word != nil
+		print_doll_draw if @guess_wrong > 0
+	end
+
+	def print_doll_draw
+		@ci.write @word_in_progress.draw_doll(@guess_wrong)
 	end
 
 	def is_case_for_guess_word?(input_text)
@@ -57,6 +63,8 @@ class Game
 	def guess_a_letter(input_text)
 		if @raffle_word.include? input_text
 			add_word_in_words_right input_text
+		else
+			@guess_wrong += 1
 		end
 	end
 

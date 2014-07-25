@@ -94,6 +94,19 @@ describe Game do
 
 				game.next_step
 			end
+
+			it "should change nothing in word in progress and start doll draw on the first guess letter wrong" do
+				draw =
+												"----+\n" +
+												"    |\n" +
+												"    O"
+				allow(ci).to receive(:read).and_return("X")
+				allow(word_in_progress).to receive(:draw_doll).and_return(draw)
+
+				expect(ci).to receive(:write).with(draw)
+
+				game.next_step
+			end
 		end
 
 		it "should not ask player for pass word length again" do
