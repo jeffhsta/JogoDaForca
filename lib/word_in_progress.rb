@@ -18,8 +18,9 @@ class WordInProgress
     if guess_wrong == 1
       doll_head
     elsif guess_wrong == 2
-      doll_head +
-      "   /|"
+      doll_head + "   /|"
+    elsif guess_wrong == 3
+      doll_head + "   /|\\"
     end
   end
 

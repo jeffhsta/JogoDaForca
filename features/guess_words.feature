@@ -51,7 +51,6 @@ Feature: game started
 		   /|
 		"""
 
-	@dev
 	Scenario: I guess the third letter with failure
 		I can see nothing changed in the word in progress
 		I can see a start doll draw
@@ -66,7 +65,7 @@ Feature: game started
 		"""
 		___
 		----+
-				|
-				O
-			 /|\
+		    |
+		    O
+		   /|\
 		"""
