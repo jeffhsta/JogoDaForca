@@ -22,5 +22,14 @@ describe WordInProgress do
 
       expect(word).to eq("F__I_")
     end
+
+    it "shoud return just underscores with quantity equal the word length when words_right is []" do
+      raffle_word = "FRUIT"
+      words_right = []
+
+      word = word_in_progress.generate_word raffle_word, words_right
+
+      expect(word).to eq("_____")
+    end
   end
 end

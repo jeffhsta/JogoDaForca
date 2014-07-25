@@ -41,9 +41,14 @@ describe Game do
 			end
 
 			it "should print '____' for a word with length is 4" do
-				allow(ci).to receive(:read).and_return("4")
+				word_length = "4"
+				expected_word = "____"
+				raffle_word = "ABCD"
+				allow(ci).to receive(:read).and_return(word_length)
+				allow(word_raffle).to receive(:raffle_word).with(word_length.to_i).and_return(raffle_word)
+				allow(word_in_progress).to receive(:generate_word).with(raffle_word, []).and_return(expected_word)
 
-				expect(ci).to receive(:write).with("____")
+				expect(ci).to receive(:write).with(expected_word)
 
 				game.next_step
 			end

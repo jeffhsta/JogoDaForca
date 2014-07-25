@@ -43,7 +43,7 @@ class Game
 			raffle_word_print_underscore input_text
 		end
 
-		print_underscore
+		print_underscore if @raffle_word != nil
 	end
 
 	def print_underscore
@@ -62,13 +62,8 @@ class Game
 		word_length = input_text.to_i
 		begin
 			@raffle_word = @word_raffle.raffle_word word_length
-			@ci.write underscore_for_word_length(word_length)
 		rescue StandardError => error
 			@ci.write error.message
 		end
-	end
-
-	def underscore_for_word_length(input_text)
-		"_" * input_text
 	end
 end
