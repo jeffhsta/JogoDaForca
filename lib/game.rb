@@ -37,7 +37,7 @@ class Game
 	def run_the_next_step(input_text)
 		if input_text == "finish"
 			@ended = true
-		elsif input_text.length == 1 and @raffle_word != nil
+		elsif is_case_for_guess_word? input_text
 			guess_a_letter input_text.upcase
 		else
 			raffle_word_print_underscore input_text
@@ -46,15 +46,23 @@ class Game
 		print_underscore if @raffle_word != nil
 	end
 
+	def is_case_for_guess_word?(input_text)
+		input_text.length == 1 and @raffle_word != nil
+	end
+
 	def print_underscore
 		@ci.write @word_in_progress.generate_word(@raffle_word, @words_right)
 	end
 
 	def guess_a_letter(input_text)
 		if @raffle_word.include? input_text
-			if !@words_right.include? input_text
-				@words_right << input_text
-			end
+			add_word_in_words_right input_text
+		end
+	end
+
+	def add_word_in_words_right(word)
+		if !@words_right.include? word
+			@words_right << word
 		end
 	end
 
