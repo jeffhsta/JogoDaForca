@@ -27,7 +27,7 @@ Given /^the game is started$/ do
 end
 
 Given /^the word length is "(.*?)"$/ do |word_length|
-	type word_size
+	type word_length
 end
 
 When /^I guess letter "(.*?)"$/ do |letter|

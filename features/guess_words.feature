@@ -5,15 +5,14 @@ Feature: game started
 	Like a player
 	I want guess a letter
 
-	# IN DEVELOPMENT
-	# Scenario: I guess the letter successifully
-	# 	I can see this letter in right position replacing underscore
+	Scenario: I guess the letter successifully
+		I can see this letter in right position replacing underscore
 
-	# 	Given the game is started
-	# 	And the word length is "3"
-	# 	When I guess letter "M"
-	# 	And finish the game
-	# 	Then I look on screen:
-	# 	"""
-	# 	M_M
-	# 	"""
+		Given the game is started
+		And the word length is "3"
+		When I guess letter "M"
+		And finish the game
+		Then I look on screen:
+		"""
+		M_M
+		"""

@@ -1,6 +1,6 @@
 class WordRaffle
 	def raffle_word(word_length)
-		words = %w(hi mom game fruit)
+		words = %w(HI MOM GAME FRUIT)
 		raffled_word = words.detect do |word|
 			word.length == word_length
 		end
