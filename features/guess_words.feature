@@ -69,3 +69,25 @@ Feature: game started
 		    O
 		   /|\
 		"""
+
+# IN DEVELOPMENT
+#	Scenario: I guess the fourth letter with failure
+#		I can see nothing changed in the word in progress
+#		I can see a start doll draw
+#
+#		Given the game is started
+#		And the word length is "4"
+#		When I guess letter "X"
+#		And I guess letter "Y"
+#		And I guess letter "Z"
+#		And I guess letter "J"
+#		And finish the game
+#		Then I look on screen:
+#		"""
+#		___
+#		----+
+#		    |
+#		    O
+#		   /|\
+#		   /
+#		"""
