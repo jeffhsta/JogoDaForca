@@ -14,13 +14,16 @@ class WordInProgress
                 "----+\n" +
                 "    |\n" +
                 "    O\n"
+    doll_arms = "   /|\\\n"
 
     if guess_wrong == 1
       doll_head
     elsif guess_wrong == 2
       doll_head + "   /|"
     elsif guess_wrong == 3
-      doll_head + "   /|\\"
+      doll_head + doll_arms
+    elsif guess_wrong == 4
+      doll_head + doll_arms + "   /"
     end
   end
 
