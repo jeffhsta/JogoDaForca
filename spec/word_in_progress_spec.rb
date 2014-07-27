@@ -85,5 +85,19 @@ describe WordInProgress do
 
       expect(draw).to eq(given_draw)
     end
+
+    it "should draw add left arm on doll with 5 guess wrong" do
+      guess_wrong = 5
+      given_draw =
+              "----+\n" +
+              "    |\n" +
+              "    O\n" +
+              "   /|\\\n" +
+              "   / \\"
+
+      draw = word_in_progress.draw_doll guess_wrong
+
+      expect(draw).to eq(given_draw)
+    end
   end
 end

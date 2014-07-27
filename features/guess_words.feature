@@ -90,25 +90,25 @@ Feature: game started
 		   /|\
 		   /
 		"""
-#	IN DEVELOPMENT
-#	Scenario: I guess the fifth letter with failure
-#		I can see nothing changed in the word in progress
-#		I can see a start doll draw
-#
-#		Given the game is started
-#		And the word length is "4"
-#		When I guess letter "X"
-#		And I guess letter "Y"
-#		And I guess letter "Z"
-#		And I guess letter "J"
-#		And I guess letter "W"
-#		And finish the game
-#		Then I look on screen:
-#		"""
-#		___
-#		----+
-#		    |
-#		    O
-#		   /|\
-#		   / \
-#		"""
+	
+	Scenario: I guess the fifth letter with failure
+		I can see nothing changed in the word in progress
+		I can see a start doll draw
+
+		Given the game is started
+		And the word length is "4"
+		When I guess letter "X"
+		And I guess letter "Y"
+		And I guess letter "Z"
+		And I guess letter "J"
+		And I guess letter "W"
+		And finish the game
+		Then I look on screen:
+		"""
+		___
+		----+
+		    |
+		    O
+		   /|\
+		   / \
+		"""

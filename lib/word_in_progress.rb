@@ -24,6 +24,8 @@ class WordInProgress
       doll_head + doll_arms
     elsif guess_wrong == 4
       doll_head + doll_arms + "   /"
+    elsif guess_wrong == 5
+      doll_head + doll_arms + "   / \\"
     end
   end
 
