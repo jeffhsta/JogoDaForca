@@ -5,8 +5,17 @@ describe DollDraw do
   subject(:doll_draw) { DollDraw.new }
 
   describe "#draw" do
-    xit "should draw nothing when pass nil" do
-      parts = nill
+    it "should draw nothing when pass nil" do
+      parts = nil
+      expected_draw = ""
+
+      draw = doll_draw.draw parts
+
+      expect(draw).to eq(expected_draw)
+    end
+
+    it "should draw nothing when pass zero part" do
+      parts = 0
       expected_draw = ""
 
       draw = doll_draw.draw parts

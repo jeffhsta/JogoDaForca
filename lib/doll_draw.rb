@@ -1,6 +1,8 @@
 class DollDraw
   def draw(draw_progress)
-    if draw_progress == 1
+    if draw_progress == nil or draw_progress == 0
+      ""
+    elsif draw_progress == 1
       draw_doll_head
     elsif draw_progress == 2
       draw_doll_head + draw_doll_left_arm
