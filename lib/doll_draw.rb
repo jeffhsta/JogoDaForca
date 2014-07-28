@@ -1,24 +1,26 @@
 class DollDraw
+  def initialize
+    @parts = {
+      1 => draw_doll_head,
+      2 => draw_doll_head + draw_doll_left_arm,
+      3 => draw_doll_head + draw_doll_arms,
+      4 => draw_doll_head + draw_doll_arms + draw_doll_left_leg,
+      5 => draw_doll_head + draw_doll_arms + draw_doll_legs
+    }
+  end
+
   def draw(draw_progress)
-    if is_valid_draw_progress? draw_progress
-      ""
-    elsif draw_progress == 1
-      draw_doll_head
-    elsif draw_progress == 2
-      draw_doll_head + draw_doll_left_arm
-    elsif draw_progress == 3
-      draw_doll_head + draw_doll_arms
-    elsif draw_progress == 4
-      draw_doll_head + draw_doll_arms + draw_doll_left_leg
-    elsif draw_progress == 5
-      draw_doll_head + draw_doll_arms + draw_doll_legs
-    end
+    is_valid_draw_progress?(draw_progress) ? draw_parts(draw_progress) : ""
   end
 
   private
 
+  def draw_parts(draw_progress)
+    @parts[draw_progress]
+  end
+
   def is_valid_draw_progress?(draw_progress)
-    draw_progress == nil or draw_progress == 0
+    draw_progress != nil and draw_progress != 0
   end
 
   def draw_doll_head
