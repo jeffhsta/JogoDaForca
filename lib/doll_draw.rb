@@ -1,6 +1,6 @@
 class DollDraw
   def draw(draw_progress)
-    if draw_progress == nil or draw_progress == 0
+    if is_valid_draw_progress? draw_progress
       ""
     elsif draw_progress == 1
       draw_doll_head
@@ -16,6 +16,10 @@ class DollDraw
   end
 
   private
+
+  def is_valid_draw_progress?(draw_progress)
+    draw_progress == nil or draw_progress == 0
+  end
 
   def draw_doll_head
     "----+\n" +
