@@ -5,7 +5,6 @@ Feature: finish the game
   Like a player
   I can complete the word or guess wrong 6 times
 
-  @dev
   Scenario: I complete the word
     I can see congratulation message
 
