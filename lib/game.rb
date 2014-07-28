@@ -12,7 +12,7 @@ class Game
 
 		@ended = false
 		@raffle_word = nil
-		@words_right = []
+		@letters_right = []
 		@guess_wrong = 0
 	end
 
@@ -40,12 +40,30 @@ class Game
 			@ended = true
 		elsif is_case_for_guess_word? input_text
 			guess_a_letter input_text.upcase
+			check_finish_the_game
 		else
 			raffle_word_with_word_length input_text
 		end
 
-		print_underscore if @raffle_word != nil
-		print_doll_draw if @guess_wrong > 0
+		print_underscore if @raffle_word != nil and !@ended
+		print_doll_draw if @guess_wrong > 0 and !@endend
+	end
+
+	def check_finish_the_game
+		if have_all_word_in_raffle_word?
+			@ended = true
+			@ci.write "Congratulations, you win the Forca game!!!"
+		end
+	end
+
+	def have_all_word_in_raffle_word?
+		@raffle_word.split("").each do |letter|
+			if !@letters_right.include?(letter)
+				return false
+			end
+		end
+
+		true
 	end
 
 	def print_doll_draw
@@ -57,7 +75,7 @@ class Game
 	end
 
 	def print_underscore
-		@ci.write @word_in_progress.generate_word(@raffle_word, @words_right)
+		@ci.write @word_in_progress.generate_word(@raffle_word, @letters_right)
 	end
 
 	def guess_a_letter(input_text)
@@ -69,8 +87,8 @@ class Game
 	end
 
 	def add_word_in_words_right(word)
-		if !@words_right.include? word
-			@words_right << word
+		if !@letters_right.include? word
+			@letters_right << word
 		end
 	end
 

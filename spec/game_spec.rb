@@ -140,5 +140,23 @@ describe Game do
 
 			game.next_step
 		end
+
+		context "when finish the game" do
+			it "should finish the game with congratulations message when player guess letters right" do
+				allow(ci).to receive(:read).and_return("3")
+				game.start
+				game.next_step
+				expected_message = "Congratulations, you win the Forca game!!!"
+
+				expect(ci).to receive(:write).with(expected_message)
+
+				allow(ci).to receive(:read).and_return("M")
+				game.next_step
+				allow(ci).to receive(:read).and_return("O")
+				game.next_step
+
+				expect(game).to be_ended
+			end
+		end
 	end
 end
