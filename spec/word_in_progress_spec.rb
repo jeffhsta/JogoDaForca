@@ -1,8 +1,10 @@
 require "spec_helper"
 require "word_in_progress"
+require "doll_draw"
 
 describe WordInProgress do
-  subject(:word_in_progress) { WordInProgress.new }
+  let(:doll_draw) { double "doll_draw" }
+  subject(:word_in_progress) { WordInProgress.new doll_draw }
 
   describe "#generate_word" do
     it "should replace underscore for letter when it is right" do
@@ -41,6 +43,7 @@ describe WordInProgress do
               "    |\n" +
               "    O\n"
 
+      allow(doll_draw).to receive(:draw).with(guess_wrong).and_return(given_draw)
       draw = word_in_progress.draw_doll guess_wrong
 
       expect(draw).to eq(given_draw)
@@ -54,6 +57,7 @@ describe WordInProgress do
               "    O\n" +
               "   /|"
 
+      allow(doll_draw).to receive(:draw).with(guess_wrong).and_return(given_draw)
       draw = word_in_progress.draw_doll guess_wrong
 
       expect(draw).to eq(given_draw)
@@ -67,6 +71,7 @@ describe WordInProgress do
               "    O\n" +
               "   /|\\\n"
 
+      allow(doll_draw).to receive(:draw).with(guess_wrong).and_return(given_draw)
       draw = word_in_progress.draw_doll guess_wrong
 
       expect(draw).to eq(given_draw)
@@ -81,6 +86,7 @@ describe WordInProgress do
               "   /|\\\n" +
               "   /"
 
+      allow(doll_draw).to receive(:draw).with(guess_wrong).and_return(given_draw)
       draw = word_in_progress.draw_doll guess_wrong
 
       expect(draw).to eq(given_draw)
@@ -95,6 +101,7 @@ describe WordInProgress do
               "   /|\\\n" +
               "   / \\"
 
+      allow(doll_draw).to receive(:draw).with(guess_wrong).and_return(given_draw)
       draw = word_in_progress.draw_doll guess_wrong
 
       expect(draw).to eq(given_draw)
