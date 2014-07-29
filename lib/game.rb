@@ -46,7 +46,7 @@ class Game
 		end
 
 		print_underscore if @raffle_word != nil and !@ended
-		print_doll_draw if @guess_wrong > 0 and !@endend
+		print_doll_draw if @guess_wrong > 0 and !@ended
 	end
 
 	def check_finish_the_game

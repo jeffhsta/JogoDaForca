@@ -142,10 +142,14 @@ describe Game do
 		end
 
 		context "when finish the game" do
-			it "should finish the game with congratulations message when player guess letters right" do
+			before do
 				allow(ci).to receive(:read).and_return("3")
+				allow(word_raffle).to receive(:raffle_word).and_return("MOM")
 				game.start
 				game.next_step
+			end
+
+			it "should finish the game with congratulations message when player guess letters right" do
 				expected_message = "Congratulations, you win the Forca game!!!"
 
 				expect(ci).to receive(:write).with(expected_message)
@@ -154,6 +158,20 @@ describe Game do
 				game.next_step
 				allow(ci).to receive(:read).and_return("O")
 				game.next_step
+
+				expect(game).to be_ended
+			end
+
+			it "should finish the game with info message than player lost the game when the player guess 6 letters wrong" do
+				expected_message = "Sorry, you lost the game, game over!"
+				guesses = ["A", "B", "C", "D", "E", "F"]
+
+				expect(ci).to receive(:write).with(expected_message).exactly(1).times
+
+				guesses.each do |letter|
+					allow(ci).to receive(:read).and_return(letter)
+					game.next_step
+				end
 
 				expect(game).to be_ended
 			end
