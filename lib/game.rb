@@ -53,6 +53,9 @@ class Game
 		if have_all_word_in_raffle_word?
 			@ended = true
 			@ci.write "Congratulations, you win the Forca game!!!"
+		elsif @guess_wrong >= 6
+			@ended = true
+			@ci.write "Sorry, you lost the game, game over!"
 		end
 	end
 
@@ -80,15 +83,15 @@ class Game
 
 	def guess_a_letter(input_text)
 		if @raffle_word.include? input_text
-			add_word_in_words_right input_text
+			add_letter_in_letters_right input_text
 		else
 			@guess_wrong += 1
 		end
 	end
 
-	def add_word_in_words_right(word)
-		if !@letters_right.include? word
-			@letters_right << word
+	def add_letter_in_letters_right(letter)
+		if !@letters_right.include? letter
+			@letters_right << letter
 		end
 	end
 
